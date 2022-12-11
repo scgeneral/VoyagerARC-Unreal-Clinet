@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{7088202E-499F-8D01-4499-C4B7DC9524B7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "VoyageAR",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
