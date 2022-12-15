@@ -91,3 +91,25 @@ void AVoyagerARSceneActor::HideInteractionWidget()
 	WidgetComponent->SetVisibility(false);
 }
 
+void AVoyagerARSceneActor::OnStartInteract()
+{
+}
+
+void AVoyagerARSceneActor::OnEndInteract()
+{
+}
+
+bool AVoyagerARSceneActor::CheckCanObjectBeDropped()
+{
+	return false;
+}
+
+void AVoyagerARSceneActor::SetIsObjectAttached(bool isObjectAttached)
+{
+}
+
+TArray<FName> AVoyagerARSceneActor::GetAvaliableAttachTags()
+{
+	return TArray<FName>();
+}
+

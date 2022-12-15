@@ -6,10 +6,20 @@
 #include "PreviewActor.h"
 #include "WidgetComponent.h"
 #include "GameFramework/Actor.h"
+#include "Interface/IInteractableObject.h"
 #include "VoyagerARSceneActor.generated.h"
 
+USTRUCT(BlueprintType)
+struct FSendData
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FTransform transform;
+};
+
 UCLASS()
-class VOYAGEAR_API AVoyagerARSceneActor : public AActor
+class VOYAGEAR_API AVoyagerARSceneActor : public AActor, public IIInteractableObject
 {
 	GENERATED_BODY()
 	
@@ -19,6 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* Mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FSendData sendData;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,6 +43,8 @@ protected:
 	UWidgetComponent* WidgetComponent;
 	
 public:	
+
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -46,6 +61,17 @@ public:
 
 	void ShowInteractionWidget();
 	void HideInteractionWidget();
+
+	// from interface
+
+	//UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	void OnStartInteract();
+	void OnEndInteract();
+	bool CheckCanObjectBeDropped();
+	void SetIsObjectAttached(bool isObjectAttached);
+	TArray<FName> GetAvaliableAttachTags();
+
+	//
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TEnumAsByte<MeshType> ActorType = MeshType::EFurniture;
