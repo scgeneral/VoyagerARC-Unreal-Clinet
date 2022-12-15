@@ -32,6 +32,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FSendData sendData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction Variables")
+	TArray<FName> CanAttachTagsArray;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
+	bool IsObjectAttach;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
