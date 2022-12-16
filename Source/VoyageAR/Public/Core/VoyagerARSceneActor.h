@@ -76,7 +76,7 @@ public:
 	bool CheckCanObjectBeDropped();
 	void SetIsObjectAttached(bool isObjectAttached);
 	TArray<FName> GetAvaliableAttachTags();
-
+	void OnActivateOutline();
 	//
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

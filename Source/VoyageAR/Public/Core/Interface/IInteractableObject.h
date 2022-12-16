@@ -33,4 +33,6 @@ public:
 	void SetIsObjectAttached(bool isObjectAttached);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	TArray<FName> GetAvaliableAttachTags();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	void OnActivateOutline();
 };

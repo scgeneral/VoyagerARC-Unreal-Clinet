@@ -113,3 +113,7 @@ TArray<FName> AVoyagerARSceneActor::GetAvaliableAttachTags()
 	return TArray<FName>();
 }
 
+void AVoyagerARSceneActor::OnActivateOutline()
+{
+}
+
