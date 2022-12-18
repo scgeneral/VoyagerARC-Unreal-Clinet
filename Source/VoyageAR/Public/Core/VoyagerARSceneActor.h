@@ -9,6 +9,7 @@
 #include "Interface/IInteractableObject.h"
 #include "VoyagerARSceneActor.generated.h"
 
+//TODO Add structs to CoreTypes.h file
 USTRUCT(BlueprintType)
 struct FSendData
 {
@@ -36,6 +37,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction Variables")
 	TArray<FName> CanAttachTagsArray;
 
+	//TODO fix code style
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
 	bool IsObjectAttach;
 
