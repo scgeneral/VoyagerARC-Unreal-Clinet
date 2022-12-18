@@ -7,17 +7,8 @@
 #include "WidgetComponent.h"
 #include "GameFramework/Actor.h"
 #include "Interface/IInteractableObject.h"
+#include "MyCoreTypes.h"
 #include "VoyagerARSceneActor.generated.h"
-
-//TODO Add structs to CoreTypes.h file
-USTRUCT(BlueprintType)
-struct FSendData
-{
-	GENERATED_BODY()
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FTransform transform;
-};
 
 UCLASS()
 class VOYAGEAR_API AVoyagerARSceneActor : public AActor, public IIInteractableObject
@@ -39,13 +30,16 @@ public:
 
 	//TODO fix code style
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
-	bool IsObjectAttach;
+	bool bIsObjectAttach;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
 	bool bCanChangeTexture;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
+	TArray<UMaterialInterface*> MaterialsBufferArray;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction Variables")
-		TArray<UTexture2D*> AvailableTexturesArray;
+	TArray<UTexture2D*> AvailableTexturesArray;
 
 protected:
 	// Called when the game starts or when spawned
