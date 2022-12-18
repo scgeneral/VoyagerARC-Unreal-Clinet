@@ -117,3 +117,13 @@ void AVoyagerARSceneActor::OnActivateOutline()
 {
 }
 
+bool AVoyagerARSceneActor::CheckCanObjectChangeTexture()
+{
+	return false;
+}
+
+TArray<UTexture2D*> AVoyagerARSceneActor::GetAvaliableTextures()
+{
+	return TArray<UTexture2D*>();
+}
+

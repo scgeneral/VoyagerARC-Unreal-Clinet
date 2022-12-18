@@ -38,6 +38,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
 	bool IsObjectAttach;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Interaction Variables")
+	bool bCanChangeTexture;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction Variables")
+		TArray<UTexture2D*> AvailableTexturesArray;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -77,6 +84,8 @@ public:
 	void SetIsObjectAttached(bool isObjectAttached);
 	TArray<FName> GetAvaliableAttachTags();
 	void OnActivateOutline();
+	bool CheckCanObjectChangeTexture();
+	TArray<UTexture2D*> GetAvaliableTextures();
 	//
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

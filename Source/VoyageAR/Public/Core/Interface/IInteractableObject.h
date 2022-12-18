@@ -35,4 +35,8 @@ public:
 	TArray<FName> GetAvaliableAttachTags();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void OnActivateOutline();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	bool CheckCanObjectChangeTexture();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	TArray<UTexture2D*> GetAvaliableTextures();
 };
