@@ -39,7 +39,7 @@ public:
 	TArray<UMaterialInterface*> MaterialsBufferArray;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction Variables")
-	TArray<UTexture2D*> AvailableTexturesArray;
+	TArray<UTexture*> AvailableTexturesArray;
 
 protected:
 	// Called when the game starts or when spawned
@@ -81,7 +81,7 @@ public:
 	TArray<FName> GetAvaliableAttachTags();
 	void OnActivateOutline();
 	bool CheckCanObjectChangeTexture();
-	TArray<UTexture2D*> GetAvaliableTextures();
+	TArray<UTexture*> GetAvaliableTextures();
 	//
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

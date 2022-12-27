@@ -38,5 +38,5 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	bool CheckCanObjectChangeTexture();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	TArray<UTexture2D*> GetAvaliableTextures();
+	TArray<UTexture*> GetAvaliableTextures();
 };

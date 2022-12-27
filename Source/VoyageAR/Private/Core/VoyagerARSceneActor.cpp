@@ -122,8 +122,8 @@ bool AVoyagerARSceneActor::CheckCanObjectChangeTexture()
 	return false;
 }
 
-TArray<UTexture2D*> AVoyagerARSceneActor::GetAvaliableTextures()
+TArray<UTexture*> AVoyagerARSceneActor::GetAvaliableTextures()
 {
-	return TArray<UTexture2D*>();
+	return TArray<UTexture*>();
 }
 
