@@ -33,11 +33,9 @@ struct FFurnitureData : public FTableRowBase
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FName Name;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		TSoftObjectPtr<UStaticMesh> Mesh;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		FFurnitureMaterial FurnitureMaterial;
+		TArray<FFurnitureMaterial> FurnitureMaterial;
 };
 
 

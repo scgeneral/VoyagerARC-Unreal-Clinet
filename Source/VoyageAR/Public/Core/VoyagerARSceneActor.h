@@ -10,6 +10,13 @@
 #include "MyCoreTypes.h"
 #include "VoyagerARSceneActor.generated.h"
 
+//UENUM(BlueprintType) // искать в PreviewActor
+//enum MeshType
+//{
+//	EFurniture = 0 UMETA(DisplayName = "Furniture"),
+//	EPicture = 1 UMETA(DisplayName = "Picture"),
+//};
+
 UCLASS()
 class VOYAGEAR_API AVoyagerARSceneActor : public AActor, public IIInteractableObject
 {

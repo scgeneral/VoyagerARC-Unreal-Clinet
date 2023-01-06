@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UserWidget.h"
 #include "WidgetComponent.h"
+//#include "VoyagerARSceneActor.h"
 #include "GameFramework/Actor.h"
 #include "Materials/MaterialInstance.h"
 #include "PreviewActor.generated.h"
