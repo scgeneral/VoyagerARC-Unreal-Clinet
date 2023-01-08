@@ -53,8 +53,11 @@ void AVoyagerARCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	InputComponent->BindAction("InteractionAction", IE_Pressed, this, &AVoyagerARCharacter::Interact);
-	InputComponent->BindAction("InteractionChangeTexture", IE_Pressed, this, &AVoyagerARCharacter::InteractChangePicture);
-//InteractionChangeTexture
+
+	//TODO remove it from here or replace logic from blueprint input binding here in C++
+	//InputComponent->BindAction("InteractionChangeTexture", IE_Pressed, this, &AVoyagerARCharacter::InteractChangePicture);
+	
+	//InteractionChangeTexture
 	InputComponent->BindAxis("RotateObject", this, &AVoyagerARCharacter::HandleRotationAxis);
 	InputComponent->BindAxis("ScaleObject", this, &AVoyagerARCharacter::HandleScaleAxis);
 }
