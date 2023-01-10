@@ -13,7 +13,7 @@ void UVoyageARFunctionLibrary::AsyncDownloadActor(UObject* WorldContextObject, c
     FStreamableManager& AssetLoader = UVoyageARGameGlobals::Get().AssetLoader;
     FStringAssetReference Reference = AssetPtr.ToStringReference();
     
-    AssetLoader.RequestAsyncLoad(Reference, FStreamableDelegate::CreateStatic(&UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete, WorldContextObject, Reference, Callback));
+    //AssetLoader.RequestAsyncLoad(Reference, FStreamableDelegate::CreateStatic(&UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete, WorldContextObject, Reference, Callback));
 }
 
 void UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete(UObject* WorldContextObject, FStringAssetReference Reference,const FMyAsyncActorDelegate Callback)
