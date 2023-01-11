@@ -7,6 +7,8 @@
 #include "GameFramework/Actor.h"
 #include "MyCoreTypes.generated.h"
 
+DECLARE_DYNAMIC_DELEGATE_OneParam(FMyAsyncActorDelegate, UStreamableRenderAsset*, ResultObject);
+
 USTRUCT(BlueprintType)
 struct FSendData
 {

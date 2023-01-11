@@ -9,17 +9,49 @@
 
 void UVoyageARFunctionLibrary::AsyncDownloadActor(UObject* WorldContextObject, const TSoftObjectPtr<UStreamableRenderAsset>& AssetPtr, const FMyAsyncActorDelegate& Callback)
 {
-    // Асинхронно загружаем ассет в память
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     FStreamableManager& AssetLoader = UVoyageARGameGlobals::Get().AssetLoader;
     FStringAssetReference Reference = AssetPtr.ToStringReference();
     
-    //AssetLoader.RequestAsyncLoad(Reference, FStreamableDelegate::CreateStatic(&UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete, WorldContextObject, Reference, Callback));
+    AssetLoader.RequestAsyncLoad(Reference, FStreamableDelegate::CreateStatic(&UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete, WorldContextObject, Reference, Callback));
 }
 
-void UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete(UObject* WorldContextObject, FStringAssetReference Reference,const FMyAsyncActorDelegate Callback)
+void UVoyageARFunctionLibrary::OnAsyncDownloadActorComplete(UObject* WorldContextObject, FStringAssetReference Reference, const FMyAsyncActorDelegate Callback)
 {
-    //  Ассет теперь должен быть в памяти, пытаемся загрузить объект класса
+    //  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     UStreamableRenderAsset* ActorClass = Cast<UStreamableRenderAsset>(StaticLoadObject(UStreamableRenderAsset::StaticClass(), nullptr, *(Reference.ToString())));
-    // Вызываем событие о спавне в блюпринты
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     Callback.ExecuteIfBound(ActorClass);
+}
+
+void UVoyageARFunctionLibrary::AsyncLoadRenderComponent(UObject* WorldContextObject, const TArray<TSoftObjectPtr<UStreamableRenderAsset>>& Assets, const FAsyncLoadRenderComponentDelegate& Callback, FName Name)
+{
+    FStreamableManager& AssetLoader = UVoyageARGameGlobals::Get().AssetLoader;
+
+    TArray<FStringAssetReference> ReferenceList;
+
+    for (auto& Asset : Assets)
+    {
+        ReferenceList.Add(Asset.ToSoftObjectPath());	
+    }
+
+    auto ForwardLambda = [](UObject* WorldContextObject,TArray<TSoftObjectPtr<UStreamableRenderAsset>> Assets, TArray<FStringAssetReference> References, const FAsyncLoadRenderComponentDelegate Callback, FName Name)
+    {
+        TArray<UStreamableRenderAsset*> AssetList;
+	
+        for (auto& AssetPtr : Assets)
+        {
+            UStreamableRenderAsset* Asset = AssetPtr.Get();
+            if (!Asset) return;
+            AssetList.Add(Asset);
+        }
+        Callback.ExecuteIfBound(AssetList, Name);
+    };
+    
+    AssetLoader.RequestAsyncLoad(ReferenceList, FStreamableDelegate::CreateStatic(ForwardLambda, WorldContextObject, Assets, ReferenceList, Callback, Name));
+}
+
+void UVoyageARFunctionLibrary::AsyncLoadRenderComponentComplete(UObject* WorldContextObject,TArray<TSoftObjectPtr<UStreamableRenderAsset>> Assets, TArray<FStringAssetReference> References, const FAsyncLoadRenderComponentDelegate Callback, FName Name)
+{
+   
 }
