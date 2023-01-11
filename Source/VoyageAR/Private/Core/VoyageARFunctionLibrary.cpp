@@ -35,7 +35,7 @@ void UVoyageARFunctionLibrary::AsyncLoadRenderComponent(UObject* WorldContextObj
         ReferenceList.Add(Asset.ToSoftObjectPath());	
     }
 
-    auto ForwardLambda = [](UObject* WorldContextObject,TArray<TSoftObjectPtr<UStreamableRenderAsset>> Assets, TArray<FStringAssetReference> References, const FAsyncLoadRenderComponentDelegate Callback, FName Name)
+    auto AsyncLoadRenderComponentCompleteLambda = [](UObject* WorldContextObject,TArray<TSoftObjectPtr<UStreamableRenderAsset>> Assets, TArray<FStringAssetReference> References, const FAsyncLoadRenderComponentDelegate Callback, FName Name)
     {
         TArray<UStreamableRenderAsset*> AssetList;
 	
@@ -48,7 +48,7 @@ void UVoyageARFunctionLibrary::AsyncLoadRenderComponent(UObject* WorldContextObj
         Callback.ExecuteIfBound(AssetList, Name);
     };
     
-    AssetLoader.RequestAsyncLoad(ReferenceList, FStreamableDelegate::CreateStatic(ForwardLambda, WorldContextObject, Assets, ReferenceList, Callback, Name));
+    AssetLoader.RequestAsyncLoad(ReferenceList, FStreamableDelegate::CreateStatic(AsyncLoadRenderComponentCompleteLambda, WorldContextObject, Assets, ReferenceList, Callback, Name));
 }
 
 void UVoyageARFunctionLibrary::AsyncLoadRenderComponentComplete(UObject* WorldContextObject,TArray<TSoftObjectPtr<UStreamableRenderAsset>> Assets, TArray<FStringAssetReference> References, const FAsyncLoadRenderComponentDelegate Callback, FName Name)
